@@ -2,15 +2,12 @@ import google.generativeai as genai
 import os
 from dotenv import load_dotenv
 
-# Load environment variables from .env file
 load_dotenv()
 
-# Configure Gemini API
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
 def generate_readme_from_code(code):
     """Generate README using Gemini AI"""
-    # Use Gemini 2.5 Flash (correct model name)
     model = genai.GenerativeModel("gemini-2.5-flash")
 
     prompt = f"""

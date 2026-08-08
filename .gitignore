@@ -1,3 +1,19 @@
+# secrets
 .env
-__pycache__
-venv
+
+# python virtual envs
+venv/
+.venv/
+env/
+
+# python
+__pycache__/
+*.pyc
+
+# database
+app.db
+
+# OS/editor cruft
+.DS_Store
+.vscode/
+.idea/
