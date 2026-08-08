@@ -129,7 +129,6 @@ def generate_documentation_for_repo(
             capture_output=True,
             timeout=60
         )
-
         update_status(
             repo_name,
             "cloning",
@@ -137,6 +136,30 @@ def generate_documentation_for_repo(
         )
 
 
+        # ----------------------------------------------------
+        # STEP 1B: DETECT DEFAULT BRANCH
+        # ----------------------------------------------------
+
+        branch_result = subprocess.run(
+            [
+                "git",
+                "-C",
+                temp_dir,
+                "symbolic-ref",
+                "--short",
+                "HEAD"
+            ],
+            capture_output=True,
+            text=True
+        )
+
+        default_branch = branch_result.stdout.strip() or "main"
+
+        update_status(
+            repo_name,
+            "cloning",
+            f"Detected default branch: {default_branch}"
+        )
         # ----------------------------------------------------
         # STEP 2: GENERATE DOCUMENTATION USING ADK
         # ----------------------------------------------------
@@ -389,7 +412,7 @@ def generate_documentation_for_repo(
                 "pull",
                 "--rebase",
                 "origin",
-                "main"
+                default_branch
             ],
             capture_output=True,
             text=True,
@@ -444,7 +467,7 @@ def generate_documentation_for_repo(
                 temp_dir,
                 "push",
                 "origin",
-                "main"
+                default_branch
             ],
             capture_output=True,
             text=True,
