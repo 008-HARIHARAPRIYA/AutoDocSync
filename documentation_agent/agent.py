@@ -9,7 +9,7 @@ load_dotenv()
 root_agent = Agent(
     name="documentation_agent",
 
-    model="gemini-2.5-flash",
+    model="gemini-3.5-flash-lite",
 
     description="An expert software documentation writer that analyzes source code and generates README.md files.",
 

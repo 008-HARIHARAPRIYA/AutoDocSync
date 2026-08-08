@@ -8,7 +8,7 @@ genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
 def generate_readme_from_code(code):
     """Generate README using Gemini AI"""
-    model = genai.GenerativeModel("gemini-2.5-flash")
+    model = genai.GenerativeModel("gemini-3.5-flash-lite")
 
     prompt = f"""
 You are an expert software documentation writer.
